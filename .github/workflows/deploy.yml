@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - v1
 
 permissions:
   contents: read
@@ -21,8 +22,17 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout v1
         uses: actions/checkout@v4
+        with:
+          ref: v1
+          path: site/v1
+
+      - name: Checkout v2 (main)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: site/v2
 
       - name: Configurar Pages
         uses: actions/configure-pages@v4
@@ -30,7 +40,7 @@ jobs:
       - name: Upload dos arquivos
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "."
+          path: "site"
 
       - name: Deploy para GitHub Pages
         id: deployment
