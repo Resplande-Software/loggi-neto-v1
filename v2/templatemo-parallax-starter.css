@@ -775,11 +775,6 @@ img {
     display: block;
 }
 
-/* --- Services 6-item grid (3 cols × 2 rows) --- */
-.services-grid {
-    grid-template-columns: repeat(3, 1fr);
-}
-
 /* --- Flat Section (Depoimentos) --- */
 .flat-section {
     background: #111d35;
